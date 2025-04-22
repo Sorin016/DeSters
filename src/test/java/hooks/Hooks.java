@@ -11,6 +11,7 @@ public class Hooks extends AbstractStepDef {
     public void beforeUITest() {
         driver = Singleton.getDriver();
         driver.manage().window().maximize();
+
     }
 
 //    @After("@UI")

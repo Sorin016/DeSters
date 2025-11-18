@@ -34,7 +34,7 @@ public class Action {
 
     public static void navigate(String navigateTo, WebDriver driver) {
         driver.get(navigateTo);
-    }
+      }
 
     public static void takeScreenshot(Scenario scenario, WebDriver driver) {
         try {

@@ -1,6 +1,5 @@
 package stepDefinition;
 
-import Util.Singleton;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -9,8 +8,8 @@ import org.junit.Assert;
 
 import static Actions.Action.navigate;
 import static Actions.Action.sendKey;
-import static Actions.Action.isDisplayed;
 import static Actions.Action.click;
+import static Actions.Action.isDisplayed;
 import static Util.DataKeys.PASSWORD;
 import static Util.DataKeys.USERNAME;
 import static Util.HighlightElement.highlightElement;

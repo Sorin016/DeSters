@@ -15,8 +15,16 @@ public class SumaDinObiecteCustoms {
                 .sum());
     }
 }
-@Data
+
 class Custom{
+    public int getPret() {
+        return pret;
+    }
+
+    public void setPret(int pret) {
+        this.pret = pret;
+    }
+
     private int pret;
     public Custom(int pret){
         this.pret=pret;

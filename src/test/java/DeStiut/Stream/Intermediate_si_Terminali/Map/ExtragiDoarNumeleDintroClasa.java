@@ -1,5 +1,7 @@
 package DeStiut.Stream.Intermediate_si_Terminali.Map;
 
+
+
 import lombok.Data;
 
 import java.util.stream.Stream;
@@ -12,7 +14,7 @@ public class ExtragiDoarNumeleDintroClasa {
                 println);
     }
 }
-@Data
+
 class Persoane{
     @Override
     public String toString() {
@@ -23,6 +25,23 @@ class Persoane{
     }
 
     private int virsta;
+
+    public String getNume() {
+        return nume;
+    }
+
+    public void setNume(String nume) {
+        this.nume = nume;
+    }
+
+    public int getVirsta() {
+        return virsta;
+    }
+
+    public void setVirsta(int virsta) {
+        this.virsta = virsta;
+    }
+
     private String nume;
 
     public Persoane(int virsta, String nume) {

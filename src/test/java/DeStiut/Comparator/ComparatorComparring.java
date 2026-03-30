@@ -1,6 +1,6 @@
 package DeStiut.Comparator;
 
-import lombok.Data;
+
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -17,9 +17,26 @@ public class ComparatorComparring {
         list.forEach(System.out::println);
     }
 }
-@Data
+
 class Student{
     int age;
+
+    public String getNume() {
+        return nume;
+    }
+
+    public void setNume(String nume) {
+        this.nume = nume;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     String nume;
     Student(int age, String nume){
         this.age=age;

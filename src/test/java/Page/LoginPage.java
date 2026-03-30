@@ -1,6 +1,8 @@
 package Page;
 
+import lombok.Data;
 import lombok.Getter;
+
 import lombok.Setter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,7 +26,7 @@ public class LoginPage extends AbstractPage {
     @FindBy(xpath = "//p[text()='Invalid credentials']")
     private WebElement invalidCredentials;
 
-    @FindBy(xpath = "//h5[@class='oxd-text oxd-text--h5 orangehrm-login-title']")
+    @FindBy(xpath = "//h5[text()='Login']")
     private WebElement loginLogo;
 
     @FindBy(xpath = "//div[@class='orangehrm-login-footer-sm']//a[2]")

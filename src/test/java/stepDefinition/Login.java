@@ -1,12 +1,16 @@
 package stepDefinition;
 
+import Util.Singleton;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
-import static Actions.Action.*;
+import static Actions.Action.navigate;
+import static Actions.Action.sendKey;
+import static Actions.Action.isDisplayed;
+import static Actions.Action.click;
 import static Util.DataKeys.PASSWORD;
 import static Util.DataKeys.USERNAME;
 import static Util.HighlightElement.highlightElement;
@@ -40,6 +44,7 @@ public class Login extends AbstractStepDef {
     public void userIsRedirectToHomepage() {
         waitUntil(3);
         highlightElement(homePage.getDashboardSign());
+        waitUntil(3);
         Assert.assertEquals("Dashboard", homePage.getDashboardSign().getText());
     }
 

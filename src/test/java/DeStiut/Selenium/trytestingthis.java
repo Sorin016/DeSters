@@ -31,13 +31,6 @@ public class trytestingthis {
         ((JavascriptExecutor) driver).executeScript(
                 "arguments[0].scrollIntoView(true);", element);
 
-        //Find Element
-        WebElement source = driver.findElement(By.xpath("//img[@id='drag1']"));
-        WebElement target = driver.findElement(By.xpath("//div[@id='div1']"));
-        actions.dragAndDrop(source, target).perform();
-        actions.doubleClick(driver.findElement(
-                By.xpath("//button[text()='Double-click me']"))).perform();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[text()='Double-click me']")));
 
         // WebElement – acțiuni pe elemente
         //Instructuini
@@ -85,24 +78,24 @@ public class trytestingthis {
         driver.switchTo().window(googlePage);
         driver.navigate().to("https://www.dezlearn.com/javascript-alerts");
         driver.manage().window().maximize();
-        System.out.println(driver.getTitle()+" "+driver.getCurrentUrl());
+        System.out.println(driver.getTitle() + " " + driver.getCurrentUrl());
         Thread.sleep(3000);
 
-       // Alert
+        // Alert
 
-               // ok
+        // ok
         driver.findElement(By.xpath("//button[@id='s_alert1']")).click();
-        alert=driver.switchTo().alert();
+        alert = driver.switchTo().alert();
         alert.accept();
         Thread.sleep(3000);
 
-                //ok si cancel
+        //ok si cancel
         driver.findElement(By.xpath("//button[@id='c_alert2']")).click();
-        alert=driver.switchTo().alert();
+        alert = driver.switchTo().alert();
         alert.accept();
         Thread.sleep(2000);
         driver.findElement(By.xpath("//button[@id='c_alert2']")).click();
-        alert=driver.switchTo().alert();
+        alert = driver.switchTo().alert();
         alert.dismiss();
         Thread.sleep(1000);
 
@@ -110,21 +103,46 @@ public class trytestingthis {
         // in cazul asta am facut cu actions pina ajunge la element si doar asa a mers,
         // TOT CE ESTE CU scroll NU FUNCTIONEAZA!!!!
 
-        //Actions si doar Alerta ok calcel si submit
-        WebElement element1=driver.findElement(By.xpath("//button[@id='p_alert3']"));
+        //Actions moveToElement si doar Alerta ok calcel si submit
+        WebElement element1 = driver.findElement(By.xpath("//button[@id='p_alert3']"));
         actions.moveToElement(element1).perform();
         Thread.sleep(1000);
         driver.findElement(By.xpath("//button[@id='p_alert3']")).click();
-        alert=driver.switchTo().alert();
+        alert = driver.switchTo().alert();
         alert.sendKeys("sorin");
         alert.dismiss();
         Thread.sleep(1000);
         driver.findElement(By.xpath("//button[@id='p_alert3']")).click();
-        alert=driver.switchTo().alert();
+        alert = driver.switchTo().alert();
         alert.sendKeys("SORIN");
         alert.accept();
         Thread.sleep(2000);
+        wait.until(drivers -> driver.getWindowHandles().size() > 1);
+        
+// Faci switch pe tab-ul nou
+        for (String windowHandle : driver.getWindowHandles()) {
+            if (windowHandle.equals(originalWindow)) {
+                driver.switchTo().window(originalWindow);
+                break;
+            }
+        }
+        driver.findElement(By.xpath("//h2[contains(text(),'This is your layout one')]"))
+                .isDisplayed();
+        System.out.println(driver.getCurrentUrl());
+        WebElement doubleClik=driver.findElement(By.xpath("//button[contains(text(),'Double-click me')]"));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[text()='Double-click me']")));
+        actions.moveToElement(doubleClik).perform();
+        Thread.sleep(1000);
+        actions.doubleClick(doubleClik).perform();
+        Thread.sleep(1000);
+        System.out.println(driver.getCurrentUrl());
+        driver.findElement(By.xpath("//p[@id='demo' and text()='Your Sample Double Click worked!']")).isDisplayed();
+        Thread.sleep(1000);
 
+        //dragAndDrop
+        WebElement source = driver.findElement(By.xpath("//img[@id='drag1']"));
+        WebElement target = driver.findElement(By.xpath("//div[@id='div1']"));
+        actions.dragAndDrop(source, target).perform();
 
         //Închidere browser
         driver.close();

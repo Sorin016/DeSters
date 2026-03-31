@@ -169,7 +169,7 @@ public class trytestingthis {
         TakesScreenshot ts = (TakesScreenshot) driver;
         File src = ts.getScreenshotAs(OutputType.FILE);
         String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        File dest = new File("imagini/screenshot_" + timestamp + ".png");
+        File dest = new File("screenshotTryTestThisThingsSite/screenshot_" + timestamp + ".png");
         FileUtils.copyFile(src, dest);
     }
 }

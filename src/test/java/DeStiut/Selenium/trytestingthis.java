@@ -1,16 +1,21 @@
 package DeStiut.Selenium;
 
 import Util.WaitUntil;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 
 public class trytestingthis {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, IOException {
         System.setProperty("webdriver.chrome.driver", "driver/chromedriver.exe");
         final WebDriver driver = new ChromeDriver();
         Alert alert;
@@ -118,7 +123,7 @@ public class trytestingthis {
         alert.accept();
         Thread.sleep(2000);
         wait.until(drivers -> driver.getWindowHandles().size() > 1);
-        
+
 // Faci switch pe tab-ul nou
         for (String windowHandle : driver.getWindowHandles()) {
             if (windowHandle.equals(originalWindow)) {
@@ -129,7 +134,10 @@ public class trytestingthis {
         driver.findElement(By.xpath("//h2[contains(text(),'This is your layout one')]"))
                 .isDisplayed();
         System.out.println(driver.getCurrentUrl());
-        WebElement doubleClik=driver.findElement(By.xpath("//button[contains(text(),'Double-click me')]"));
+
+        //Double click
+        screen(driver);
+        WebElement doubleClik = driver.findElement(By.xpath("//button[contains(text(),'Double-click me')]"));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[text()='Double-click me']")));
         actions.moveToElement(doubleClik).perform();
         Thread.sleep(1000);
@@ -144,8 +152,24 @@ public class trytestingthis {
         WebElement target = driver.findElement(By.xpath("//div[@id='div1']"));
         actions.dragAndDrop(source, target).perform();
 
+        //Keyboard
+        driver.findElement(By.xpath("//textarea[@name='message']")).sendKeys(Keys.CONTROL + "a");
+        Thread.sleep(2000);
+
+        //Screenshot
+        screen(driver);
+
+
         //Închidere browser
         driver.close();
         driver.quit();
+    }
+
+    public static void screen(WebDriver driver) throws IOException {
+        TakesScreenshot ts = (TakesScreenshot) driver;
+        File src = ts.getScreenshotAs(OutputType.FILE);
+        String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        File dest = new File("imagini/screenshot_" + timestamp + ".png");
+        FileUtils.copyFile(src, dest);
     }
 }

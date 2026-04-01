@@ -61,7 +61,15 @@ public class ActionClass {
         WebElement clickAndHolds=driver.findElement(By.xpath("//img[@id='drag1']"));
         WebElement whereToMove=driver.findElement(By.xpath("//div[@id='div1']"));
         actions.clickAndHold(clickAndHolds).moveToElement(whereToMove).release().perform();
-        Thread.sleep(5000);
+        Thread.sleep(2000);
+
+        //drag and drop la fel ca si metoda de mai sus
+        driver.navigate().refresh();
+        Thread.sleep(2000);
+        WebElement drag=driver.findElement(By.xpath("//img[@id='drag1']"));
+        WebElement drop=driver.findElement(By.xpath("//div[@id='div1']"));
+        actions.dragAndDrop(drag,drop).perform();
+        Thread.sleep(2000);
 
 
         driver.close();

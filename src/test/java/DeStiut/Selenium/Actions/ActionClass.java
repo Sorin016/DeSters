@@ -1,9 +1,6 @@
 package DeStiut.Selenium.Actions;
 
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -34,9 +31,16 @@ public class ActionClass {
         driver.findElement(By.xpath("//p[@id='demo' and text()='Your Sample Double Click worked!']")).isDisplayed();
         Thread.sleep(3000);
 
+        //right click
+        // deschide tab nou
+        driver.switchTo().newWindow(WindowType.TAB);
+        // mergi la un URL
+        driver.get("https://swisnl.github.io/jQuery-contextMenu/demo.html");
+        WebElement rightClick = driver.findElement(By.xpath("//span[contains(text(),'right click me')]"));
+        actions.contextClick(rightClick).perform();
+        Thread.sleep(2000);
 
         driver.close();
         driver.quit();
-
     }
 }

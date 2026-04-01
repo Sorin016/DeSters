@@ -24,6 +24,7 @@ public class ActionClass {
         driver.findElement(By.xpath("//input[@id='male']")).click();
         Thread.sleep(3000);
 
+
         //double click
         WebElement doubleClik = driver.findElement(By.xpath("//button[contains(text(),'Double-click me')]"));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[text()='Double-click me']")));
@@ -71,6 +72,20 @@ public class ActionClass {
         actions.dragAndDrop(drag,drop).perform();
         Thread.sleep(2000);
 
+        //sendKeys
+        driver.findElement(By.xpath("//input[@type='number']")).sendKeys("777");
+        actions.sendKeys(Keys.PAGE_DOWN).perform();
+        Thread.sleep(2000);
+
+        //keyDown si keyUp
+        WebElement firstOption=driver.findElement(By.xpath("//input[@name='option1']"));
+        WebElement secondOption=driver.findElement(By.xpath("//input[@name='option2']"));
+        WebElement threeOption=driver.findElement(By.xpath("//input[@name='option3']"));
+        actions.keyDown(Keys.CONTROL)
+                .click(firstOption)
+                .click(secondOption)
+                .click(threeOption).keyUp(Keys.CONTROL).perform();
+        Thread.sleep(2000);
 
         driver.close();
         driver.quit();

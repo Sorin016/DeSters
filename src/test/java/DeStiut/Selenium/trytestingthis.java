@@ -16,6 +16,7 @@ import java.util.Date;
 
 public class trytestingthis {
     public static void main(String[] args) throws InterruptedException, IOException {
+        clearScreenshotsFolder("screenshotTryTestThisThingsSite");
         System.setProperty("webdriver.chrome.driver", "driver/chromedriver.exe");
         final WebDriver driver = new ChromeDriver();
         Alert alert;
@@ -108,6 +109,7 @@ public class trytestingthis {
         // in cazul asta am facut cu actions pina ajunge la element si doar asa a mers,
         // TOT CE ESTE CU scroll NU FUNCTIONEAZA!!!!
 
+        screen(driver);
         //Actions moveToElement si doar Alerta ok calcel si submit
         WebElement element1 = driver.findElement(By.xpath("//button[@id='p_alert3']"));
         actions.moveToElement(element1).perform();
@@ -171,5 +173,19 @@ public class trytestingthis {
         String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         File dest = new File("screenshotTryTestThisThingsSite/screenshot_" + timestamp + ".png");
         FileUtils.copyFile(src, dest);
+    }
+
+    public static void clearScreenshotsFolder(String path) {
+        File folder = new File(path);
+
+        if (folder.exists() && folder.isDirectory()) {
+            File[] files = folder.listFiles();
+
+            if (files != null) {
+                for (File file : files) {
+                    file.delete();
+                }
+            }
+        }
     }
 }

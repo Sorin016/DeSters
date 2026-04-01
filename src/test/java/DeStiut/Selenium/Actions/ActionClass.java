@@ -87,6 +87,15 @@ public class ActionClass {
                 .click(threeOption).keyUp(Keys.CONTROL).perform();
         Thread.sleep(2000);
 
+        //manage
+        driver.manage().window().maximize();
+        Thread.sleep(2000);
+        driver.manage().window().minimize();
+        Thread.sleep(2000);
+        driver.manage().window().fullscreen();
+        Thread.sleep(2000);
+
+
         driver.close();
         driver.quit();
     }

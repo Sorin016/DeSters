@@ -51,12 +51,13 @@ public class All {
                 .statusCode(200).log().all();
 
     }
+
     @Test
     public void post() {
         RestAssured.baseURI = "https://reqres.in";
-        JSONObject request=new JSONObject();
-        request.put("name","orin");
-        request.put("job","banchir");
+        JSONObject request = new JSONObject();
+        request.put("name", "orin");
+        request.put("job", "banchir");
         given()
                 .header("x-api-key", "pub_0bc16bff018e99e6427b72a9e47d6e7f9e1350494a04a81c244eca10f322f621") // cheie API aici
                 .body(request.toJSONString())
@@ -66,4 +67,47 @@ public class All {
                 .then()
                 .statusCode(201).log().all();
     }
+
+    @Test
+    public void put() {
+        RestAssured.baseURI = "https://reqres.in";
+        JSONObject request = new JSONObject();
+        request.put("name", "sorin");
+        request.put("job", "banchir");
+        given()
+                .header("x-api-key", "pub_0bc16bff018e99e6427b72a9e47d6e7f9e1350494a04a81c244eca10f322f621") // cheie API aici
+                .body(request.toJSONString())
+                .contentType("application/json")
+                .when()
+                .put("/api/users/2")  // exemplu endpoint care necesită key
+                .then()
+                .statusCode(200).log().all();
+    }
+    @Test
+    public void patch() {
+        RestAssured.baseURI = "https://reqres.in";
+        JSONObject request = new JSONObject();
+        request.put("job", "it");
+        given()
+                .header("x-api-key", "pub_0bc16bff018e99e6427b72a9e47d6e7f9e1350494a04a81c244eca10f322f621") // cheie API aici
+                .body(request.toJSONString())
+                .contentType("application/json")
+                .when()
+                .patch("/api/users/2")  // exemplu endpoint care necesită key
+                .then()
+                .statusCode(200).log().all();
+    }
+    @Test
+    public void delete() {
+        RestAssured.baseURI = "https://reqres.in";
+
+        given()
+                .header("x-api-key", "pub_0bc16bff018e99e6427b72a9e47d6e7f9e1350494a04a81c244eca10f322f621") // cheie API aici
+                .contentType("application/json")
+                .when()
+                .delete("/api/users/2")  // exemplu endpoint care necesită key
+                .then()
+                .statusCode(204).log().all();
+    }
+
 }

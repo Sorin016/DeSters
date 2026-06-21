@@ -18,20 +18,20 @@ import static Util.ScenarioContext.saveData;
 import static Util.WaitUntil.waitUntil;
 
 public class Login extends AbstractStepDef {
-    @Given("user insert username")
-    public void userInsertUsername() throws InterruptedException {
+    @Given("user insert username {string}")
+    public void userInsertUsername(String name) throws InterruptedException {
         navigate(loginPageUrl, driver);
         waitUntil(3);
-        sendKey(loginPage.getUsernameField(), "Admin");
-        saveData(USERNAME, "Admin");
+        sendKey(loginPage.getUsernameField(), name);
+        saveData(USERNAME, name);
     }
 
-    @And("user insert password")
-    public void userInsertPassword() throws InterruptedException {
-        sendKey(loginPage.getPasswordField(), "admin123");
+    @And("user insert password {string}")
+    public void userInsertPassword(String password) throws InterruptedException {
+        sendKey(loginPage.getPasswordField(), password);
         isDisplayed(loginPage.getLoginLogo());
         waitUntil(3);
-        saveData(PASSWORD, "admin123");
+        saveData(PASSWORD, password);
     }
 
     @When("user clicks on Login button")

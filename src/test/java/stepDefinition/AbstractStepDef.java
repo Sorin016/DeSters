@@ -3,8 +3,12 @@ package stepDefinition;
 import Page.HomePage;
 import Page.LoginPage;
 import Util.PropretyLoader;
+import lombok.Getter;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
+@Getter
 public class AbstractStepDef {
     protected static WebDriver driver;
     public LoginPage loginPage = new LoginPage(driver);
@@ -17,5 +21,5 @@ public class AbstractStepDef {
     public static String excelSheet = PropretyLoader.loadProperty("excelSheet");
     public static String autoItUploadFileSite = PropretyLoader.loadProperty("autoItUploadFileSite");
     public static String restAssuredBaseURL = PropretyLoader.loadProperty("restAssuredBaseURL");
-//    public Logger log = LogManager.getLogger();
+    public Logger log = LogManager.getLogger();
 }

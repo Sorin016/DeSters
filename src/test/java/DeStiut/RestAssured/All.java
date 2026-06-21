@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasItem;
 
@@ -83,6 +84,7 @@ public class All {
                 .then()
                 .statusCode(200).log().all();
     }
+
     @Test
     public void patch() {
         RestAssured.baseURI = "https://reqres.in";
@@ -97,6 +99,7 @@ public class All {
                 .then()
                 .statusCode(200).log().all();
     }
+
     @Test
     public void delete() {
         RestAssured.baseURI = "https://reqres.in";
@@ -107,6 +110,20 @@ public class All {
                 .when()
                 .delete("/api/users/2")  // exemplu endpoint care necesită key
                 .then()
+                .statusCode(204).log().all();
+    }
+
+    @Test
+    public void jsonSchemaValidators() {
+        RestAssured.baseURI = "https://reqres.in";
+
+        given()
+                .header("x-api-key", "pub_0bc16bff018e99e6427b72a9e47d6e7f9e1350494a04a81c244eca10f322f621") // cheie API aici
+                .contentType("application/json")
+                .when()
+                .get("/api/users/2")  // exemplu endpoint care necesită key
+                .then()
+                .assertThat().body(matchesJsonSchemaInClasspath("schema.json"))
                 .statusCode(204).log().all();
     }
 

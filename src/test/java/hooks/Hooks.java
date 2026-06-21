@@ -5,6 +5,7 @@ import io.cucumber.java.After;
 import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
+import io.restassured.RestAssured;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import stepDefinition.AbstractStepDef;
@@ -30,6 +31,14 @@ public class Hooks extends AbstractStepDef {
         log.info("take a screenshot before steps");
         takeScreenshot(scenario, driver);
     }
+
+    @Before("@API")
+    public void startAPI() {
+        RestAssured.baseURI = restAssuredBaseURL;
+    }
+}
+
+
 //
 //    @Before("@Excel")
 //    public void startExcel() {
@@ -37,4 +46,3 @@ public class Hooks extends AbstractStepDef {
 //        new ExcelUtil().connectioToExcelFile();
 //        testDataFromExcelFile();
 //    }
-}
